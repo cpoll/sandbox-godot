@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b5sb2y6subx1b"]
+
+[ext_resource type="Shader" uid="uid://o2tms2gbajau" path="res://Shaders/shader1.gdshader" id="1_qtxfr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qtxfr")
+shader_parameter/wave_height = 0.515
