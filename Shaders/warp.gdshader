@@ -23,3 +23,25 @@ void fragment() {
     //}
 
 }
+
+
+
+
+//
+//shader_type spatial;
+//
+///**
+ //* Base Color
+ //* [b]boop[/b]
+//*/
+//uniform vec3 base_color : source_color = vec3(1.0, 0.0, 0.0);
+//
+//
+//void vertex() {
+	//// Called for every vertex the material is visible on.
+//}
+//
+//void fragment() {
+	//// Called for every pixel the material is visible on.
+    //ALBEDO = base_color;
+//}

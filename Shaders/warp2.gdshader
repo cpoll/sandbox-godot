@@ -1,22 +1,23 @@
 shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
 
-/**
- * Base Color
- * [b]boop[/b]
-*/
-uniform vec3 base_color : source_color = vec3(1.0, 0.0, 0.0);
+
+// Varyings
+varying vec3 var_WorldPos;
+
+uniform vec4 base_color : source_color = vec4(0.541729, 0.965740, 0.914706, 1.000000);
+
 
 
 void vertex() {
-	// Called for every vertex the material is visible on.
+	var_WorldPos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    
+    // So, what's localPos?
 }
 
 void fragment() {
-	// Called for every pixel the material is visible on.
-    ALBEDO = base_color;
+// Output:0
+	ALBEDO = vec3(base_color.xyz);
+	ALPHA = var_WorldPos.g;
+	ALPHA_SCISSOR_THRESHOLD = 0.5;
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}

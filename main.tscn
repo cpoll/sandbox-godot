@@ -27,7 +27,7 @@ size = Vector2(10, 10)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
 render_priority = 0
 shader = ExtResource("3_h2yge")
-shader_parameter/base_color = Color(1, 0, 0, 1)
+shader_parameter/base_color = Color(0.84302, 0.262057, 0.688483, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_lquwl"]
 material = SubResource("ShaderMaterial_1bvp3")
@@ -70,10 +70,10 @@ skeleton = NodePath("../ShaderSphere")
 surface_material_override/0 = ExtResource("2_0xm2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67324, 1.40122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.598621, 0.568429, 0)
 mesh = SubResource("SphereMesh_lquwl")
 
 [node name="WarpVisual" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88094, 0.513176, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88094, 0.534724, 0)
 material_override = SubResource("ShaderMaterial_lquwl")
 mesh = SubResource("SphereMesh_7mycd")
