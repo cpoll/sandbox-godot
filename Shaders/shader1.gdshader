@@ -8,10 +8,10 @@ uniform float wave_height;
 
 // Ripple
 void vertex() {
-    
+
     // Squish to half-size on X
     //VERTEX.x *= 0.5;
-    
+
     // VERTEX.x and Y are between -0.5 and 0.5
     // TODO: Is this true for all shapes/meshes?
     // See: https://learnopengl.com/Getting-started/Coordinate-Systems "Local Space"
@@ -21,11 +21,11 @@ void vertex() {
     if(VERTEX.x < -0.45) {
         VERTEX.y = -0.5;
     }
-    
-    
+
+
     // VERTEX.x += sin(TIME * 5.0) * 0.2;
     //VERTEX.y += sin(TIME * 5.0 + VERTEX.x * 10.0) * wave_height;
-    
+
 }
 
 // Bouncy

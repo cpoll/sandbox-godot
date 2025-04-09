@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ba2gsb7naaf31"]
+
+[ext_resource type="Shader" uid="uid://b3q7im86y864q" path="res://Shaders/warp.gdshader" id="1_tiks5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tiks5")

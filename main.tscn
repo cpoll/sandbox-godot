@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cc46equgey5d4"]
+[gd_scene load_steps=15 format=3 uid="uid://cc46equgey5d4"]
 
 [ext_resource type="Material" uid="uid://b5sb2y6subx1b" path="res://Materials/shader1.tres" id="1_ig7tw"]
+[ext_resource type="Material" uid="uid://ba2gsb7naaf31" path="res://Materials/warp.tres" id="2_0xm2m"]
+[ext_resource type="Shader" uid="uid://dc2dox2602461" path="res://Shaders/warp2.gdshader" id="3_h2yge"]
+[ext_resource type="Shader" uid="uid://drroqopsl1juf" path="res://Shaders/warp-visual.tres" id="4_1bvp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -19,6 +22,23 @@ size = Vector2(10, 10)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7dm0k"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_0xm2m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+render_priority = 0
+shader = ExtResource("3_h2yge")
+shader_parameter/base_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lquwl"]
+material = SubResource("ShaderMaterial_1bvp3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+render_priority = 0
+shader = ExtResource("4_1bvp3")
+shader_parameter/base_color = Color(0.541729, 0.96574, 0.914706, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7mycd"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -26,15 +46,34 @@ environment = SubResource("Environment_0xm2m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.212331, 1.36525, 3.11231)
+visible = false
 
 [node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.162292, -0.076239, -0.0155282)
+visible = false
 mesh = SubResource("PlaneMesh_7dm0k")
 
 [node name="ShaderSphere" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0153985, 1.32962, 0.0132924)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12238, 1.32962, 0.0132924)
 mesh = SubResource("SphereMesh_7dm0k")
 surface_material_override/0 = ExtResource("1_ig7tw")
+
+[node name="WarpEffect" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.842142, 0.539256, 0, -0.539256, 0.842142, -3.78688, 1.18451, 0.0265848)
+mesh = SubResource("SphereMesh_0xm2m")
+skeleton = NodePath("../ShaderSphere")
+surface_material_override/0 = ExtResource("2_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67324, 1.40122, 0)
+mesh = SubResource("SphereMesh_lquwl")
+
+[node name="WarpVisual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88094, 0.513176, 0)
+material_override = SubResource("ShaderMaterial_lquwl")
+mesh = SubResource("SphereMesh_7mycd")
