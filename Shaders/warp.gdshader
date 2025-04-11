@@ -1,26 +1,39 @@
 shader_type spatial;
-// render_mode cull_disabled;
 render_mode cull_disabled;
 
 varying vec3 local_position;
 
+/**
+Threshold between 0.5 and -0.5. 0.5 is fully visible, -0.5 is fully gone.
+The object will warp/dissolve from top to bottom.
+*/
+uniform float threshold = 0.0;
+
 void vertex() {
 	// Pass the local vertex position to the fragment shader
 	local_position = VERTEX;
+    // world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 }
 
 void fragment() {
-	float threshold = 0.0; // Adjust this value to control the transparency boundary
 	if (local_position.y > threshold) {
-		ALPHA = 0.0; // Fully transparent
+        // TODO: Next step is multiply some perlin noise on the edge?
+        // Maybe add it to the local_position.y. If it's too far it won't do anything, if it's close it'll set it solid only if the noise
+        // is solid.
+
+        // Also remember, you can multiply two black-or-white textures to get the intersection...
+		ALPHA = 0.0;
 	} else {
-		ALPHA = 1.0; // Fully opaque
+		ALPHA = 1.0;
 	}
 
-    //if(!FRONT_FACING) {
-        //ALBEDO = vec3(0.0, 0.0, 0.0);
-        //DEPTH = -100.0;
-    //}
+    // Essential. WTF Does this do? It makes ALPHA all-or-nothing, which somehow stops the Z-fighting.
+    // The z-fighting is something to do with the cull_disabled setting.
+    ALPHA_SCISSOR_THRESHOLD = 0.5;
+
+    if(!FRONT_FACING) {
+        ALBEDO = vec3(0.2, 0.2, 0.2);
+    }
 
 }
 

@@ -1,0 +1,62 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://ckckoehlw40pa"]
+
+[sub_resource type="Shader" id="Shader_5u114"]
+code = "shader_type spatial;
+render_mode cull_disabled, blend_mix;
+
+
+// Varyings
+varying vec3 var_WorldPos;
+
+uniform vec4 base_color : source_color = vec4(0.541729, 0.965740, 0.914706, 1.000000);
+uniform sampler2D perlin : filter_nearest;
+
+/**
+ * Set between 0.0 and 1.0
+ */
+uniform float burn_thresh = 0.0;
+
+void vertex() {
+	var_WorldPos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+}
+
+void fragment() {
+// Output:0
+	// ALBEDO = vec3(base_color.xyz);
+    //ALBEDO = texture(perlin, UV).rgb;
+    float a = texture(perlin, UV).r;
+    ALPHA = a;
+    // This doesn't seem to work as a pass-through... If the alpha is 0.0, we see the material underneath.
+    // and if it's 1.0, we only see the burn material (white albedo, unless it's the red edge effect).
+
+    // If the alpha is only slightly above the burn_thresh, color it red to look like a burning edge
+    // TODO: This can be a step or something, right?
+    if(a > burn_thresh && a < (burn_thresh+0.1)) {
+        ALBEDO = vec3(1.0, 0.0, 0.0);
+    }
+
+
+   // ALPHA = var_WorldPos.g;
+	ALPHA_SCISSOR_THRESHOLD = burn_thresh;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_7mycd"]
+offsets = PackedFloat32Array(0, 0.132673, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0158416, 0.0158416, 0.0158416, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_272bh"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7mycd"]
+seamless = true
+seamless_blend_skirt = 0.169
+color_ramp = SubResource("Gradient_7mycd")
+noise = SubResource("FastNoiseLite_272bh")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_5u114")
+shader_parameter/base_color = Color(0.541729, 0.96574, 0.914706, 1)
+shader_parameter/perlin = SubResource("NoiseTexture2D_7mycd")
+shader_parameter/burn_thresh = 0.31
