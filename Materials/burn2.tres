@@ -29,10 +29,15 @@ void fragment() {
     // This doesn't seem to work as a pass-through... If the alpha is 0.0, we see the material underneath.
     // and if it's 1.0, we only see the burn material (white albedo, unless it's the red edge effect).
 
+    // what does mix() do?
+    
+    // For reference, someone else's implementation: https://www.youtube.com/watch?v=f5doW7mF2mw
+
     // If the alpha is only slightly above the burn_thresh, color it red to look like a burning edge
     // TODO: This can be a step or something, right?
     if(a > burn_thresh && a < (burn_thresh+0.1)) {
         ALBEDO = vec3(1.0, 0.0, 0.0);
+        EMISSION = vec3(1.0, 0.0, 0.0);
     }
 
 

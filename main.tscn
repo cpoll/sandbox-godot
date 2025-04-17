@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cc46equgey5d4"]
+[gd_scene load_steps=22 format=3 uid="uid://cc46equgey5d4"]
 
 [ext_resource type="Material" uid="uid://b5sb2y6subx1b" path="res://Materials/shader1.tres" id="1_ig7tw"]
 [ext_resource type="Material" uid="uid://ba2gsb7naaf31" path="res://Materials/warp.tres" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="SphereMesh" uid="uid://msel4q8lagkv" path="res://Materials/burn.tres" id="5_272bh"]
 [ext_resource type="Shader" uid="uid://nydrj3b4jffy" path="res://Shaders/test.tres" id="5_lquwl"]
 [ext_resource type="Material" uid="uid://ckckoehlw40pa" path="res://Materials/burn2.tres" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://df6xeisii7745" path="res://Experiments/ScreenspacedTexture/ScreenspacedTexture.tscn" id="8_5vw27"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -79,7 +80,7 @@ mesh = SubResource("SphereMesh_7dm0k")
 surface_material_override/0 = ExtResource("1_ig7tw")
 
 [node name="WarpEffect" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.998241, 0.059289, 0, -0.059289, 0.998241, -3.44043, 0.570132, 0.0265848)
+transform = Transform3D(1, 0, 0, 0, 0.998241, 0.059289, 0, -0.059289, 0.998241, 0.632069, 0.570132, 0.256657)
 mesh = SubResource("SphereMesh_0xm2m")
 skeleton = NodePath("../ShaderSphere")
 surface_material_override/0 = ExtResource("2_0xm2m")
@@ -89,17 +90,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.598621, 0.568429, 0)
 mesh = SubResource("SphereMesh_lquwl")
 
 [node name="WarpVisual" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88094, 0.534724, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9901, 0.534724, 0)
 material_override = SubResource("ShaderMaterial_lquwl")
 mesh = SubResource("SphereMesh_7mycd")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.18615, 0.765894, 0.0985165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1432, 0.765894, 0.0985165)
 mesh = ExtResource("5_272bh")
 surface_material_override/0 = SubResource("ShaderMaterial_5vw27")
 
 [node name="Texture2d" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.39954, 0.757518, 0.197033)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4749, 0.757518, 0.197033)
 mesh = ExtResource("5_272bh")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = ExtResource("7_5vw27")
@@ -107,3 +108,6 @@ surface_material_override/0 = ExtResource("7_5vw27")
 [node name="Burningball" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.903358, 1.31528, -0.154216)
 mesh = SubResource("SphereMesh_4c57u")
+
+[node name="ScreenspacedStars" parent="." instance=ExtResource("8_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.66986, 0.604223, -0.0848252)

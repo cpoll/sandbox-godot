@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bbl1q17sknwmr"]
+
+[ext_resource type="Shader" uid="uid://jns23iiua47u" path="res://Experiments/ScreenspacedTexture/ScreenspacedTexture.gdshader" id="1_rvjvo"]
+[ext_resource type="Texture2D" uid="uid://p63v5pdy3ve7" path="res://Experiments/ScreenspacedTexture/pexels-benjamin-walsham-159059246-11272091.jpg" id="2_5mx06"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rvjvo")
+shader_parameter/screenspaced_texture = ExtResource("2_5mx06")
+shader_parameter/tiling_scale = 1000.0
+shader_parameter/outline_width = 10.0
