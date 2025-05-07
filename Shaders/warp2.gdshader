@@ -11,7 +11,7 @@ uniform vec4 base_color : source_color = vec4(0.541729, 0.965740, 0.914706, 1.00
 
 void vertex() {
 	var_WorldPos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    
+
     // So, what's localPos?
 }
 
