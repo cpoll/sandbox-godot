@@ -1,26 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://durdgojlxmf1e"]
+[gd_scene load_steps=2 format=3 uid="uid://durdgojlxmf1e"]
 
-[ext_resource type="PackedScene" uid="uid://dh5tbqgywn41k" path="res://Experiments/ShellGrass/GrassPlane.tscn" id="2_p7wrp"]
 [ext_resource type="Script" uid="uid://dpxun7qh6nqye" path="res://Experiments/ShellGrass/GrassSpawner.gd" id="2_xls8u"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncb22"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_xls8u"]
-material = SubResource("StandardMaterial3D_ncb22")
 
 [node name="ShellGrass" type="Node3D"]
 
 [node name="Dirt" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_xls8u")
-skeleton = NodePath("../GrassPlane0")
+skeleton = NodePath("")
 script = ExtResource("2_xls8u")
-
-[node name="GrassPlane0" parent="." instance=ExtResource("2_p7wrp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.685628, 0.727952, 0, -0.727952, 0.685628, 0.00254947, 0.893139, 1.14384)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.470843, 0.882217, 0, -0.882217, -0.470843, 0, 1.93413, 0)

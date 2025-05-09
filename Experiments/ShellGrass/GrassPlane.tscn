@@ -8,5 +8,4 @@ material = ExtResource("1_wsgts")
 [node name="Node3D" type="Node3D"]
 
 [node name="Plane" type="MeshInstance3D" parent="."]
-cast_shadow = 0
 mesh = SubResource("PlaneMesh_htrai")
