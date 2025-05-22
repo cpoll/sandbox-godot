@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3hf1c2gnwxsx"]
+
+[ext_resource type="Shader" uid="uid://bxynth4fiqdib" path="res://Experiments/JetPlanes/Level.gdshader" id="1_v3m37"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kqrlg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2gbhd"]
+noise = SubResource("FastNoiseLite_kqrlg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nsda4"]
+render_priority = 0
+shader = ExtResource("1_v3m37")
+shader_parameter/noise = SubResource("NoiseTexture2D_2gbhd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1twny"]
+material = SubResource("ShaderMaterial_nsda4")
+size = Vector2(100, 100)
+subdivide_width = 50
+subdivide_depth = 50
+
+[node name="Level" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1twny")

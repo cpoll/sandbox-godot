@@ -1,14 +1,14 @@
 [gd_scene load_steps=23 format=3 uid="uid://cc46equgey5d4"]
 
-[ext_resource type="Material" uid="uid://b5sb2y6subx1b" path="res://Materials/shader1.tres" id="1_ig7tw"]
-[ext_resource type="Material" uid="uid://ba2gsb7naaf31" path="res://Materials/warp.tres" id="2_0xm2m"]
-[ext_resource type="Shader" uid="uid://dc2dox2602461" path="res://Shaders/warp2.gdshader" id="3_h2yge"]
-[ext_resource type="Shader" uid="uid://drroqopsl1juf" path="res://Shaders/warp-visual.tres" id="4_1bvp3"]
-[ext_resource type="SphereMesh" uid="uid://msel4q8lagkv" path="res://Materials/burn.tres" id="5_272bh"]
-[ext_resource type="Shader" uid="uid://nydrj3b4jffy" path="res://Shaders/test.tres" id="5_lquwl"]
-[ext_resource type="Material" uid="uid://ckckoehlw40pa" path="res://Materials/burn2.tres" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://df6xeisii7745" path="res://Experiments/ScreenspacedTexture/ScreenspacedTexture.tscn" id="8_5vw27"]
-[ext_resource type="PackedScene" uid="uid://durdgojlxmf1e" path="res://Experiments/ShellGrass/ShellGrass.tscn" id="9_kek77"]
+[ext_resource type="Material" uid="uid://b5sb2y6subx1b" path="res://Experiments/MiscShaders/Materials/shader1.tres" id="1_ad0ea"]
+[ext_resource type="Material" uid="uid://ba2gsb7naaf31" path="res://Experiments/MiscShaders/Materials/warp.tres" id="2_fhras"]
+[ext_resource type="Shader" uid="uid://dc2dox2602461" path="res://Experiments/MiscShaders/Shaders/warp2.gdshader" id="3_qb2tn"]
+[ext_resource type="Shader" uid="uid://drroqopsl1juf" path="res://Experiments/MiscShaders/Shaders/warp-visual.tres" id="4_5peaj"]
+[ext_resource type="SphereMesh" uid="uid://msel4q8lagkv" path="res://Experiments/MiscShaders/Materials/burn.tres" id="5_5deom"]
+[ext_resource type="Shader" uid="uid://nydrj3b4jffy" path="res://Experiments/MiscShaders/Shaders/test.tres" id="6_iqc8f"]
+[ext_resource type="Material" uid="uid://ckckoehlw40pa" path="res://Experiments/MiscShaders/Materials/burn2.tres" id="7_64gbx"]
+[ext_resource type="PackedScene" uid="uid://df6xeisii7745" path="res://Experiments/ScreenspacedTexture/ScreenspacedTexture.tscn" id="8_g2s15"]
+[ext_resource type="PackedScene" uid="uid://durdgojlxmf1e" path="res://Experiments/ShellGrass/ShellGrass.tscn" id="9_nj47d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -31,7 +31,7 @@ size = Vector2(10, 10)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
 render_priority = 0
-shader = ExtResource("3_h2yge")
+shader = ExtResource("3_qb2tn")
 shader_parameter/base_color = Color(0.84302, 0.262057, 0.688483, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_lquwl"]
@@ -39,17 +39,17 @@ material = SubResource("ShaderMaterial_1bvp3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
 render_priority = 0
-shader = ExtResource("4_1bvp3")
+shader = ExtResource("4_5peaj")
 shader_parameter/base_color = Color(0.541729, 0.96574, 0.914706, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7mycd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
 render_priority = 0
-shader = ExtResource("5_lquwl")
+shader = ExtResource("6_iqc8f")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
-next_pass = ExtResource("7_5vw27")
+next_pass = ExtResource("7_64gbx")
 depth_draw_mode = 1
 albedo_color = Color(0.121569, 0.203922, 1, 1)
 
@@ -68,58 +68,48 @@ shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.868571, 0.495565, 0, -0.495565, 0.868571, -0.212331, 0.545014, 1.63045)
-visible = false
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.162292, -0.076239, -0.0155282)
-visible = false
 mesh = SubResource("PlaneMesh_7dm0k")
 
 [node name="ShaderSphere" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12238, 1.32962, 0.0132924)
-visible = false
 mesh = SubResource("SphereMesh_7dm0k")
-surface_material_override/0 = ExtResource("1_ig7tw")
+surface_material_override/0 = ExtResource("1_ad0ea")
 
 [node name="WarpEffect" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.998241, 0.059289, 0, -0.059289, 0.998241, 0.632069, 0.570132, 0.256657)
-visible = false
 mesh = SubResource("SphereMesh_0xm2m")
 skeleton = NodePath("../ShaderSphere")
-surface_material_override/0 = ExtResource("2_0xm2m")
+surface_material_override/0 = ExtResource("2_fhras")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.598621, 0.568429, 0)
-visible = false
 mesh = SubResource("SphereMesh_lquwl")
 
 [node name="WarpVisual" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9901, 0.534724, 0)
-visible = false
 material_override = SubResource("ShaderMaterial_lquwl")
 mesh = SubResource("SphereMesh_7mycd")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1432, 0.765894, 0.0985165)
-visible = false
-mesh = ExtResource("5_272bh")
+mesh = ExtResource("5_5deom")
 surface_material_override/0 = SubResource("ShaderMaterial_5vw27")
 
 [node name="Texture2d" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4749, 0.757518, 0.197033)
-visible = false
-mesh = ExtResource("5_272bh")
+mesh = ExtResource("5_5deom")
 skeleton = NodePath("../MeshInstance3D2")
-surface_material_override/0 = ExtResource("7_5vw27")
+surface_material_override/0 = ExtResource("7_64gbx")
 
 [node name="Burningball" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.903358, 1.31528, -0.154216)
-visible = false
 mesh = SubResource("SphereMesh_4c57u")
 
-[node name="ScreenspacedStars" parent="." instance=ExtResource("8_5vw27")]
+[node name="ScreenspacedStars" parent="." instance=ExtResource("8_g2s15")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.66986, 0.604223, -0.0848252)
-visible = false
 
-[node name="ShellGrass" parent="." instance=ExtResource("9_kek77")]
+[node name="ShellGrass" parent="." instance=ExtResource("9_nj47d")]
 transform = Transform3D(1, 0, 0, 0, 0.997975, -0.0636092, 0, 0.0636092, 0.997975, 0, -0.201618, 0)

@@ -1,11 +1,11 @@
 [gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://nydrj3b4jffy"]
 
-[ext_resource type="Script" uid="uid://d2347d7grykfe" path="res://perlin_noise_3d.gd" id="1_ljctg"]
+[ext_resource type="Script" uid="uid://d2347d7grykfe" path="res://Experiments/MiscShaders/perlin_noise_3d.gd" id="1_rg7b3"]
 
 [sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_h26ei"]
 default_input_values = [2, 10.0]
 initialized = true
-script = ExtResource("1_ljctg")
+script = ExtResource("1_rg7b3")
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ljctg"]
 
