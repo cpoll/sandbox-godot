@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3hf1c2gnwxsx"]
+[gd_scene load_steps=7 format=3 uid="uid://d3hf1c2gnwxsx"]
 
+[ext_resource type="PackedScene" uid="uid://bas1g7cedm88o" path="res://Experiments/JetPlanes/Jet.tscn" id="1_kqrlg"]
 [ext_resource type="Shader" uid="uid://bxynth4fiqdib" path="res://Experiments/JetPlanes/Level.gdshader" id="1_v3m37"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kqrlg"]
@@ -20,5 +21,11 @@ subdivide_depth = 50
 
 [node name="Level" type="Node3D"]
 
+[node name="Jet" parent="." instance=ExtResource("1_kqrlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4956, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_1twny")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.250143, 0.968209, 0, -0.968209, -0.250143, 0, 29.2162, 12.4451)
