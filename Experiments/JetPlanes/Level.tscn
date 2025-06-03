@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3hf1c2gnwxsx"]
+[gd_scene load_steps=9 format=3 uid="uid://d3hf1c2gnwxsx"]
 
 [ext_resource type="PackedScene" uid="uid://bas1g7cedm88o" path="res://Experiments/JetPlanes/Jet.tscn" id="1_kqrlg"]
 [ext_resource type="Shader" uid="uid://bxynth4fiqdib" path="res://Experiments/JetPlanes/Level.gdshader" id="1_v3m37"]
+[ext_resource type="Script" uid="uid://o3k2v484kv4f" path="res://Experiments/JetPlanes/follow.gd" id="3_2gbhd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kqrlg"]
 
@@ -19,6 +20,8 @@ size = Vector2(100, 100)
 subdivide_width = 50
 subdivide_depth = 50
 
+[sub_resource type="SphereMesh" id="SphereMesh_nsda4"]
+
 [node name="Level" type="Node3D"]
 
 [node name="Jet" parent="." instance=ExtResource("1_kqrlg")]
@@ -29,3 +32,13 @@ mesh = SubResource("PlaneMesh_1twny")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.250143, 0.968209, 0, -0.968209, -0.250143, 0, 29.2162, 12.4451)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+gravity_scale = 0.0
+script = ExtResource("3_2gbhd")
+target = NodePath("../Jet")
+
+[node name="Follower" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_nsda4")
+skeleton = NodePath("../..")
