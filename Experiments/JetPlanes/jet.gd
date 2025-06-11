@@ -8,7 +8,6 @@ func _ready():
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
 func _unhandled_input(event: InputEvent) -> void:
-    print(event)
     if Input.is_action_just_pressed("quit"):
         get_tree().quit()
     

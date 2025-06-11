@@ -30,14 +30,14 @@ mesh = SubResource("PlaneMesh_1twny")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.250143, 0.968209, 0, -0.968209, -0.250143, 0, 29.2162, 12.4451)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." node_paths=PackedStringArray("target")]
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 gravity_scale = 0.0
 script = ExtResource("3_2gbhd")
-target = NodePath("")
 
 [node name="Follower" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("SphereMesh_nsda4")
 skeleton = NodePath("../..")
 
 [node name="Jet" parent="." instance=ExtResource("1_kqrlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.8598, 0)
