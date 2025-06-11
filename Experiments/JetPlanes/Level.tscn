@@ -24,9 +24,6 @@ subdivide_depth = 50
 
 [node name="Level" type="Node3D"]
 
-[node name="Jet" parent="." instance=ExtResource("1_kqrlg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4956, 0)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_1twny")
 
@@ -37,8 +34,10 @@ transform = Transform3D(1, 0, 0, 0, -0.250143, 0.968209, 0, -0.968209, -0.250143
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 gravity_scale = 0.0
 script = ExtResource("3_2gbhd")
-target = NodePath("../Jet")
+target = NodePath("")
 
 [node name="Follower" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("SphereMesh_nsda4")
 skeleton = NodePath("../..")
+
+[node name="Jet" parent="." instance=ExtResource("1_kqrlg")]

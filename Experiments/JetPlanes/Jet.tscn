@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bas1g7cedm88o"]
+[gd_scene load_steps=5 format=3 uid="uid://bas1g7cedm88o"]
 
 [ext_resource type="Script" uid="uid://b3in54c44dqqm" path="res://Experiments/JetPlanes/jet.gd" id="1_bwmau"]
+[ext_resource type="Texture2D" uid="uid://dn7c2854dv7hv" path="res://Experiments/JetPlanes/crosshair.png" id="2_w5kaw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gxll0"]
 
@@ -19,3 +20,12 @@ skeleton = NodePath("../../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.714971, 2.89583)
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_w5kaw")
+stretch_mode = 3
