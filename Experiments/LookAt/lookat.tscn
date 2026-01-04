@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://owx0o20qg2xx"]
+[gd_scene load_steps=15 format=3 uid="uid://owx0o20qg2xx"]
 
 [ext_resource type="Script" uid="uid://brqoja3c2a5n7" path="res://Experiments/LookAt/lookat.gd" id="1_xliuj"]
 
@@ -35,6 +35,16 @@ albedo_color = Color(0.368627, 0.243137, 1, 1)
 material = SubResource("StandardMaterial3D_j0svu")
 top_radius = 0.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji14y"]
+transparency = 1
+albedo_color = Color(1, 0.15, 0.15, 0.662745)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hvxf6"]
+material = SubResource("StandardMaterial3D_ji14y")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 20.0
+
 [sub_resource type="SphereMesh" id="SphereMesh_hvxf6"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_xliuj"]
@@ -45,7 +55,7 @@ height = 6.0
 script = ExtResource("1_xliuj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.96991, 0.13427, -0.20309, 0, 0.834175, 0.5515, 0.243463, -0.534906, 0.809075, 1.48431, 2.69862, 4.9416)
+transform = Transform3D(0.96991, 0.13427, -0.203091, 0, 0.834175, 0.5515, 0.243463, -0.534906, 0.809075, 1.48431, 3.901, 7.63796)
 
 [node name="Plane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08766, 0)
@@ -60,15 +70,21 @@ shadow_enabled = true
 
 [node name="Body" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(0.562531, 0.826776, 0, -0.826776, 0.562531, 0, 0, 0, 1, -4.32225, 2.23488, 1.17698)
 mesh = SubResource("CapsuleMesh_xliuj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+[node name="Nose" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, -0.0103322, 0.999947, 0, -0.999947, -0.0103322, 0, 0.265641, -0.991241)
 mesh = SubResource("CylinderMesh_ji14y")
 
+[node name="Laser" type="MeshInstance3D" parent="Body/Nose"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 10, 0)
+mesh = SubResource("CylinderMesh_hvxf6")
+skeleton = NodePath("../..")
+
 [node name="LookTarget" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837263, -5.74025, -3.47436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81485, 2.18813, 0.465434)
 mesh = SubResource("SphereMesh_hvxf6")
 
 [node name="DownTarget" type="MeshInstance3D" parent="."]
