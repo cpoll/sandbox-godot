@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy24apy3hiich"]
+
+[ext_resource type="Script" uid="uid://ct1asvgv7slsb" path="res://Experiments/Hovercraft/hovercraft.gd" id="1_m436x"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8057u"]
+friction = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8057u"]
+size = Vector3(0.5, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8057u"]
+size = Vector3(0.5, 0.2, 1)
+
+[node name="Hovercraft" type="Node3D"]
+
+[node name="Hovercraft" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_8057u")
+linear_damp = 5.0
+angular_damp = 5.0
+script = ExtResource("1_m436x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hovercraft"]
+shape = SubResource("BoxShape3D_8057u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hovercraft"]
+mesh = SubResource("BoxMesh_8057u")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Hovercraft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.260732, 0, -0.549954)
+remote_path = NodePath("../../RaycastFL")
+update_rotation = false
+
+[node name="RemoteTransform3D2" type="RemoteTransform3D" parent="Hovercraft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249225, 0.00789499, -0.532827)
+remote_path = NodePath("../../RaycastFR")
+update_rotation = false
+
+[node name="RemoteTransform3D3" type="RemoteTransform3D" parent="Hovercraft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.259739, 0, 0.498914)
+remote_path = NodePath("../../RaycastRL")
+update_rotation = false
+
+[node name="RemoteTransform3D4" type="RemoteTransform3D" parent="Hovercraft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.252151, 0, 0.491163)
+remote_path = NodePath("../../RaycastRR")
+update_rotation = false
+
+[node name="Camera3D" type="Camera3D" parent="Hovercraft"]
+transform = Transform3D(1, 0, 0, 0, 0.941929, 0.335813, 0, -0.335813, 0.941929, 0, 0.637341, 2.17367)
+
+[node name="RaycastFL" type="RayCast3D" parent="." groups=["Raycasts"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.260732, 0, -0.549954)
+
+[node name="RaycastFR" type="RayCast3D" parent="." groups=["Raycasts"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249225, 0.00789499, -0.532827)
+
+[node name="RaycastRL" type="RayCast3D" parent="." groups=["Raycasts"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.259739, 0, 0.498914)
+
+[node name="RaycastRR" type="RayCast3D" parent="." groups=["Raycasts"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.252151, 0, 0.491163)

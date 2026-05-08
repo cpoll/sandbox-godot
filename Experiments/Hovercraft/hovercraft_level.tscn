@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=3 uid="uid://cpfnyh8y1gf8b"]
+
+[ext_resource type="PackedScene" uid="uid://cy24apy3hiich" path="res://Experiments/Hovercraft/hovercraft.tscn" id="1_2vkgh"]
+[ext_resource type="Texture2D" uid="uid://brb2t4wrq77ln" path="res://icon.svg" id="2_ys8wj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8057u"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_owfny"]
+sky_material = SubResource("ProceduralSkyMaterial_8057u")
+
+[sub_resource type="Environment" id="Environment_mnope"]
+background_mode = 2
+sky = SubResource("Sky_owfny")
+tonemap_mode = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8057u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_owfny"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8057u"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8057u"]
+albedo_color = Color(0.44912, 0.56, 0.2576, 1)
+albedo_texture = ExtResource("2_ys8wj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_owfny"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mnope"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0fpfi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mnope"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0fpfi"]
+
+[node name="Hovercraft" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mnope")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Hovercraft" parent="." instance=ExtResource("1_2vkgh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.912503, 0)
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.485997)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_8057u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_owfny")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Ground" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_8057u")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_8057u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.484989, 0)
+shape = SubResource("BoxShape3D_owfny")
+
+[node name="Ramp" type="StaticBody3D" parent="."]
+transform = Transform3D(1.90675, -0.603575, 0, 0.603575, 1.90675, 0, 0, 0, 2, -2.08846, -0.376469, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
+shape = SubResource("BoxShape3D_mnope")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
+transform = Transform3D(0.241854, 0.970313, 0, -0.970313, 0.241854, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_0fpfi")
+
+[node name="Dome" type="StaticBody3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -1.47503, -3.89046)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dome"]
+mesh = SubResource("SphereMesh_mnope")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dome"]
+shape = SubResource("SphereShape3D_0fpfi")
